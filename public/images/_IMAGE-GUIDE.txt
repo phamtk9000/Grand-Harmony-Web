@@ -1,0 +1,44 @@
+GRAND HARMONY — IMAGE LIBRARY GUIDE
+====================================
+All interior renders are renamed by palette + room for easy reuse.
+Naming: <palette>-<room>[-variant].jpg
+
+PALETTE A — Signature Walnut (warm gold / walnut / dark marble)
+  a-living.jpg, a-living-2.jpg, a-living-3.jpg   living room
+  a-dining.jpg                                    dining (marble table, red art)
+  a-kitchen.jpg                                   kitchen (dark island)
+  a-hallway.jpg                                   entry / hallway
+  a-bedroom.jpg (+ -2, -3)                         master bedroom
+  a-bedroom2.jpg (+ -1, -2)                         2nd bedroom
+  a-bedroom3.jpg (+ -1, -2)                         3rd bedroom
+  a-bath.jpg (+ -1, -2, -3)                         bathrooms (travertine + tub)
+
+PALETTE B — Classic Budapest (cream panelling / herringbone)  b-01 .. b-19
+  Living/dining: b-01..b-06     Entry: b-07
+  Bathrooms:     b-08, b-09, b-14, b-15
+  Bedrooms:      b-10..b-13, b-16..b-19
+
+PALETTE C — Luminous Contemporary (pale stone / gold-leaf / green accents)  c-01 .. c-19
+  Living/dining: c-01..c-06     Entry: c-07
+  Bathrooms:     c-08, c-09, c-14, c-15
+  Bedrooms:      c-10..c-13, c-16..c-19
+
+SITE / LIFESTYLE
+  hero.jpg          wide hero crop (from a-living)
+  corridor.jpg      = a-hallway
+  d-exterior.jpeg   street elevation (building panel)
+  exterior-street.jpg  alt exterior
+  svc-*.jpg         concierge lifestyle (stairs, tea, porter, champagne, flowers, towels, evening)
+
+WHERE THEY'RE USED
+  Hero .............. hero.jpg
+  Vision letter ..... svc-evening.jpg
+  Building panel .... d-exterior.jpeg
+  Collections A/B/C . a-living + a-dining / b-05 + b-01 / c-01 + c-04
+  Gallery filmstrip . curated mix across all palettes (see src/data.js)
+  Services .......... svc-stairs, svc-champagne, svc-flowers, svc-porter,
+                      svc-towels, c-07, svc-tea
+  Footer image ...... a-hallway.jpg
+
+To swap any image, just change the filename reference in src/data.js
+(gallery) or the relevant component in src/components/.

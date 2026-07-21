@@ -1,0 +1,35 @@
+DEPLOYING TO VERCEL
+===================
+This repository has the app at its ROOT (package.json, index.html,
+src/, public/ are all top-level), so no special Root Directory is needed.
+
+IN THE VERCEL PROJECT SETTINGS
+------------------------------
+1. Import the GitHub repo:  phamtk9000/Grand-Harmony-Web
+2. Root Directory:     ./         (leave as the repository root — default)
+3. Framework Preset:   Vite       (auto-detected)
+   Build Command:      npm run build     (default)
+   Output Directory:   dist              (default)
+   Install Command:    npm install       (default)
+4. Deploy.
+
+CONFIG ALREADY IN PLACE
+-----------------------
+- vite.config.js:  base is '/' (absolute asset URLs, correct behind Vercel's router)
+- vercel.json:     SPA rewrite so client routes fall back to index.html,
+  while real files (assets, images, brand, plans, fonts, proposal) are
+  served directly. This keeps the PDF + QR working:
+      /proposal/grand-harmony-proposal.pdf
+      /brand/qr.png
+
+AFTER DEPLOY
+------------
+Your PDF will be live at:
+   https://<your-vercel-domain>/proposal/grand-harmony-proposal.pdf
+Regenerate public/brand/qr.png to encode that final URL so the QR resolves.
+
+NOTE ON FONTS
+-------------
+The "Claire Murphy" accent font is not bundled (licensed). The design
+falls back to Playfair Display until you add the files to public/fonts/.
+This is expected and does not break the build.

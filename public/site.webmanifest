@@ -1,0 +1,11 @@
+{
+  "name": "The Grand Harmony · Budapest",
+  "short_name": "Grand Harmony",
+  "icons": [
+    { "src": "/favicon-192x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/favicon-512x512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#14110D",
+  "background_color": "#14110D",
+  "display": "standalone"
+}
