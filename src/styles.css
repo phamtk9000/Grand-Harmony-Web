@@ -487,6 +487,21 @@ h2.section-title {
 .res-table .c-area { font-family: var(--serif); font-size: 1.15rem; white-space: nowrap; }
 .res-table .c-area .u { font-family: var(--sans); font-size: 0.7rem; color: var(--stone-2); margin-left: 0.15rem; }
 .res-table .dash { color: var(--stone-2); }
+.res-row--sold td { color: var(--stone-2); }
+.res-row--sold .c-code, .res-row--sold .c-area { color: var(--stone-2); text-decoration: line-through; text-decoration-thickness: 1px; }
+.badge-status {
+  display: inline-block;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+.badge-status--sold { background: var(--ink); color: #f4efe6; }
+.badge-status--reserved { color: #8a6f3d; border: 1px dashed rgba(138,111,61,0.6); }
+.facc__left::before { content: '·'; margin-right: 0.9rem; }
 .badge-duplex {
   display: inline-block;
   font-size: 0.58rem;
@@ -597,8 +612,8 @@ h2.section-title {
 .plans__grid {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 .plan {
   border: 1px solid var(--line-ink);

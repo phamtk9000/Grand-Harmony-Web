@@ -4,37 +4,48 @@
 const IMG = (name) => `/images/${name}.jpg`
 
 // --- Residences -------------------------------------------------------------
-// Floors 1-3 share an identical typical layout (five residences each).
-const typicalFloor = (floor) => [
-  { code: `${floor}01`, floor, type: 'residence', bed: 1, bath: 1, area: 60.7 },
-  { code: `${floor}02`, floor, type: 'residence', bed: 2, bath: 1.5, area: 76.2 },
-  { code: `${floor}03`, floor, type: 'residence', bed: 1, bath: 1.5, area: 64.52 },
-  { code: `${floor}04`, floor, type: 'residence', bed: 1, bath: 1, area: 62.75 },
-  { code: `${floor}05`, floor, type: 'residence', bed: 1, bath: 1, area: 53.97 },
+// Unit mix, areas and sales status follow the sales price list (Nov 2026).
+// area = total (sales) area; net = measured net internal area from the
+// architect's plans E.05–E.07 (14.10.2026). Prices stay off the site.
+// status: 'available' | 'reserved' | 'sold'
+const SOLD = 'sold'
+const AVAILABLE = 'available'
+const RESERVED = 'reserved'
+
+// Floors 1-3 share an identical typical layout (five residences each);
+// x05 is a studio (living room with a sleeping alcove).
+const typicalFloor = (floor, [s1, s2, s3, s4, s5]) => [
+  { code: `${floor}01`, floor, type: 'residence', bed: 2, bath: 1, net: 48.83, area: 53.713, status: s1 },
+  { code: `${floor}02`, floor, type: 'residence', bed: 2, bath: 1.5, net: 62.84, area: 69.124, status: s2 },
+  { code: `${floor}03`, floor, type: 'residence', bed: 1, bath: 1.5, net: 49.67, area: 54.637, status: s3 },
+  { code: `${floor}04`, floor, type: 'residence', bed: 1, bath: 1, net: 51.79, area: 56.969, status: s4 },
+  { code: `${floor}05`, floor, type: 'residence', bed: 0, bath: 1, net: 38.56, area: 42.416, status: s5 },
 ]
 
 export const units = [
   // Ground floor
-  { code: 'SH-01', floor: 'G', type: 'retail', bed: 0, bath: 0, area: 89.95, name: 'Shophouse 01' },
-  { code: 'SH-02', floor: 'G', type: 'retail', bed: 0, bath: 0, area: 57.03, name: 'Shophouse 02' },
-  { code: 'G01', floor: 'G', type: 'residence', bed: 1, bath: 1, area: 62.75 },
-  { code: 'G02', floor: 'G', type: 'residence', bed: 1, bath: 1, area: 53.97 },
+  { code: 'SH-01', floor: 'G', type: 'retail', bed: 0, bath: 0, area: 89.95, name: 'Shophouse 01', status: RESERVED },
+  { code: 'SH-02', floor: 'G', type: 'retail', bed: 0, bath: 0, area: 57.03, name: 'Shophouse 02', status: RESERVED },
+  { code: 'G04', floor: 'G', type: 'residence', bed: 1, bath: 1, net: 51.79, area: 56.969, status: SOLD },
+  // price list shows "45/53" for G05's total area; read as 45.53 m²
+  { code: 'G05', floor: 'G', type: 'residence', bed: 1, bath: 1, area: 45.53, status: SOLD },
   // Levels 1-3 (typical)
-  ...typicalFloor(1),
-  ...typicalFloor(2),
-  ...typicalFloor(3),
-  // Level 4 — duplex penthouses
-  { code: '401', floor: 4, type: 'duplex', bed: 3, bath: 2, area: 104.57 },
-  { code: '402', floor: 4, type: 'duplex', bed: 3, bath: 3, area: 89.725 },
-  { code: '403', floor: 4, type: 'duplex', bed: 2, bath: 1.5, area: 95.795 },
-  { code: '404', floor: 4, type: 'duplex', bed: 2, bath: 1.5, area: 79.45 },
-  { code: '405', floor: 4, type: 'duplex', bed: 3, bath: 2.5, area: 79.12 },
+  ...typicalFloor(1, [SOLD, SOLD, AVAILABLE, AVAILABLE, SOLD]),
+  ...typicalFloor(2, [SOLD, SOLD, AVAILABLE, AVAILABLE, SOLD]),
+  ...typicalFloor(3, [SOLD, SOLD, AVAILABLE, AVAILABLE, SOLD]),
+  // Level 4 — duplex penthouses (402 and 403 have a balcony)
+  { code: '401', floor: 4, type: 'duplex', bed: 3, bath: 2, net: 102.96, area: 113.256, status: AVAILABLE },
+  { code: '402', floor: 4, type: 'duplex', bed: 3, bath: 3, net: 76.8, area: 84.48, status: AVAILABLE },
+  { code: '403', floor: 4, type: 'duplex', bed: 2, bath: 1.5, net: 88, area: 96.8, status: AVAILABLE },
+  { code: '404', floor: 4, type: 'duplex', bed: 2, bath: 1.5, net: 78.9, area: 86.79, status: AVAILABLE },
+  { code: '405', floor: 4, type: 'duplex', bed: 3, bath: 2.5, net: 76.7, area: 84.37, status: AVAILABLE },
 ]
 
-// Layout label helper: e.g. "2 Bed · 1.5 Bath"
+// Layout label helper: e.g. "2 Bed · 1.5 Bath", "Studio · 1 Bath"
 export const layoutLabel = (u, bedWord, bathWord, retailWord) => {
   if (u.type === 'retail') return retailWord
   const b = Number.isInteger(u.bath) ? u.bath : u.bath.toFixed(1)
+  if (u.bed === 0) return `Studio · ${b} ${bathWord}`
   return `${u.bed} ${bedWord} · ${b} ${bathWord}`
 }
 
@@ -42,6 +53,7 @@ export const layoutLabel = (u, bedWord, bathWord, retailWord) => {
 export const plans = [
   { key: 'typical', img: './plans/floor-typical.png' },
   { key: 'duplex', img: './plans/floor-duplex.png' },
+  { key: 'duplex-upper', img: './plans/floor-duplex-upper.png' },
 ]
 
 // --- Gallery ----------------------------------------------------------------

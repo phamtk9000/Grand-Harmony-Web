@@ -121,6 +121,7 @@ export default function Contact() {
                       onChange={(v) => setForm((f) => ({ ...f, interest: v }))}
                       options={[
                         { value: 'any', label: opt.any },
+                        { value: 'studio', label: opt.studio },
                         { value: 'b1', label: opt.b1 },
                         { value: 'b2', label: opt.b2 },
                         { value: 'b3', label: opt.b3 },

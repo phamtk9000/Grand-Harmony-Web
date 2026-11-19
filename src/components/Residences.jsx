@@ -5,6 +5,7 @@ import Reveal from './Reveal.jsx'
 
 const FILTERS = [
   { key: 'all', match: () => true },
+  { key: 'studio', match: (u) => u.type !== 'retail' && u.bed === 0 },
   { key: 'b1', match: (u) => u.type !== 'retail' && u.bed === 1 },
   { key: 'b2', match: (u) => u.type !== 'retail' && u.bed === 2 },
   { key: 'b3', match: (u) => u.type !== 'retail' && u.bed === 3 },
@@ -64,6 +65,14 @@ export default function Residences() {
   }
   const floorTag = (f) => (f === 4 ? 'Duplex Penthouse' : f === 'G' ? 'Ground' : '')
 
+  // "2 left" / "Sold out"; nothing when every unit on the floor is still free
+  const availability = (list) => {
+    const free = list.filter((u) => u.status === 'available').length
+    if (free === list.length) return null
+    if (free > 0) return t('residences.left')(free)
+    return list.every((u) => u.status === 'sold') ? t('residences.soldOut') : t('residences.noneLeft')
+  }
+
   const cols = t('residences.cols')
   const isEmpty = grouped.length === 0
 
@@ -118,6 +127,7 @@ export default function Residences() {
                       <span className="facc__name">{floorName(floor)}</span>
                       <span className="facc__meta">
                         {t('residences.count')(list.length)}
+                        {availability(list) && <span className="facc__left">{availability(list)}</span>}
                         {floorTag(floor) && <em className="facc__tag">{floorTag(floor)}</em>}
                       </span>
                     </span>
@@ -138,11 +148,16 @@ export default function Residences() {
                         </thead>
                         <tbody>
                           {list.map((u) => (
-                            <tr key={u.code}>
+                            <tr key={u.code} className={u.status !== 'available' ? `res-row--${u.status}` : undefined}>
                               <td>
                                 <span className="c-code">{u.name || u.code}</span>
                                 {u.type === 'duplex' && (
                                   <span className="badge-duplex">Duplex</span>
+                                )}
+                                {u.status !== 'available' && (
+                                  <span className={`badge-status badge-status--${u.status}`}>
+                                    {t(`residences.status.${u.status}`)}
+                                  </span>
                                 )}
                                 <span className="c-type">
                                   {u.type === 'retail'
