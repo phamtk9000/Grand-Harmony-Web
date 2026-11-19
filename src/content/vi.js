@@ -180,11 +180,11 @@ export const vi = {
       title: 'Từng mét vuông đều được cân nhắc',
       items: [
         { t: 'Tầng điển hình', s: 'Tầng 1–3', d: 'Năm căn mỗi tầng, 42–69 m².' },
-        { t: 'Duplex · tầng dưới', s: 'Tầng 4', d: 'Năm penthouse hai tầng, 84–113 m². Sảnh, phòng khách, phòng ăn và bếp dưới trần thông tầng.' },
-        { t: 'Duplex · tầng trên', s: 'Tầng 4 · Gác lửng', d: 'Phòng ngủ và phòng tắm quanh gác lửng nhìn xuống phòng khách, đón sáng từ cửa sổ mái.' },
+        { t: 'Tầng duplex', s: 'Tầng 4 · Hai tầng', d: 'Năm penthouse hai tầng, 84–113 m². Tầng dưới: phòng khách, phòng ăn và bếp; tầng trên: phòng ngủ quanh gác lửng. Cả hai tầng trong một file PDF.' },
       ],
       note: 'Diện tích mang tính tham khảo, đo theo bề mặt hoàn thiện bên trong. Bản vẽ không theo tỉ lệ.',
       view: 'Xem mặt bằng đầy đủ',
+      viewPdf: 'Xem PDF · cả hai tầng',
     },
     location: {
       eyebrow: 'Vị trí',

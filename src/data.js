@@ -52,8 +52,8 @@ export const layoutLabel = (u, bedWord, bathWord, retailWord) => {
 // --- Floor plans ------------------------------------------------------------
 export const plans = [
   { key: 'typical', img: './plans/floor-typical.png' },
-  { key: 'duplex', img: './plans/floor-duplex.png' },
-  { key: 'duplex-upper', img: './plans/floor-duplex-upper.png' },
+  // the duplex card opens one PDF holding both levels (lower + upper)
+  { key: 'duplex', img: './plans/floor-duplex.png', pdf: './plans/floor-duplex.pdf' },
 ]
 
 // --- Gallery ----------------------------------------------------------------

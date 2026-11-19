@@ -612,8 +612,8 @@ h2.section-title {
 .plans__grid {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
 }
 .plan {
   border: 1px solid var(--line-ink);

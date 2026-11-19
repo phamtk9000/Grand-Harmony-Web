@@ -170,11 +170,11 @@ export const en = {
       title: 'Every metre, considered',
       items: [
         { t: 'Typical floor', s: 'Levels 1–3', d: 'Five residences per floor, 42–69 m².' },
-        { t: 'Duplex · lower level', s: 'Level 4', d: 'Five two-storey penthouses, 84–113 m². Entrance, living, dining and kitchen under double-height ceilings.' },
-        { t: 'Duplex · upper level', s: 'Level 4 · Gallery', d: 'Bedrooms and bathrooms around a gallery overlooking the living room, lit by roof windows.' },
+        { t: 'Duplex level', s: 'Level 4 · Two floors', d: 'Five two-storey penthouses, 84–113 m². Living, dining and kitchen below; bedrooms around a gallery above. Both levels in one PDF.' },
       ],
       note: 'Areas are indicative and measured to internal finishes. Drawings are not to scale.',
       view: 'Open full plan',
+      viewPdf: 'Open PDF · both levels',
     },
     location: {
       eyebrow: 'Location',

@@ -17,15 +17,15 @@ export default function FloorPlans() {
         <div className="plans__grid">
           {plans.map((p, i) => (
             <Reveal className="plan" key={p.key} delay={i * 120}>
-              <a className="plan__figure" href={p.img} target="_blank" rel="noreferrer">
+              <a className="plan__figure" href={p.pdf || p.img} target="_blank" rel="noreferrer">
                 <img src={p.img} alt={items[i].t} loading="lazy" />
               </a>
               <div className="plan__meta">
                 <span className="p-sub">{items[i].s}</span>
                 <h3 className="p-title">{items[i].t}</h3>
                 <p className="p-desc">{items[i].d}</p>
-                <a className="p-view" href={p.img} target="_blank" rel="noreferrer">
-                  {t('plans.view')} <span className="arw">&#8594;</span>
+                <a className="p-view" href={p.pdf || p.img} target="_blank" rel="noreferrer">
+                  {t(p.pdf ? 'plans.viewPdf' : 'plans.view')} <span className="arw">&#8594;</span>
                 </a>
               </div>
             </Reveal>
