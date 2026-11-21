@@ -27,8 +27,8 @@ export const units = [
   { code: 'SH-01', floor: 'G', type: 'retail', bed: 0, bath: 0, area: 89.95, name: 'Shophouse 01', status: RESERVED },
   { code: 'SH-02', floor: 'G', type: 'retail', bed: 0, bath: 0, area: 57.03, name: 'Shophouse 02', status: RESERVED },
   { code: 'G04', floor: 'G', type: 'residence', bed: 1, bath: 1, net: 51.79, area: 56.969, status: SOLD },
-  // price list shows "45/53" for G05's total area; read as 45.53 m²
-  { code: 'G05', floor: 'G', type: 'residence', bed: 1, bath: 1, area: 45.53, status: SOLD },
+  // G05's total area is written exactly as on the price list ("45/53")
+  { code: 'G05', floor: 'G', type: 'residence', bed: 1, bath: 1, area: '45/53', status: SOLD },
   // Levels 1-3 (typical)
   ...typicalFloor(1, [SOLD, SOLD, AVAILABLE, AVAILABLE, SOLD]),
   ...typicalFloor(2, [SOLD, SOLD, AVAILABLE, AVAILABLE, SOLD]),
